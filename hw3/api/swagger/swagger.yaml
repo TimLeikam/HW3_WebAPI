@@ -1,0 +1,185 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Homework3 App
+# during dev, should point to your local machine
+host: localhost
+# basePath prefixes all resource paths 
+basePath: /
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+x-a127-config: {}
+x-a127-services: {}
+paths:
+  /hello:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: hello_world
+    x-a127-apply: {}
+    get:
+      description: Returns 'Hello' to the caller
+      # used as the method name of the controller
+      operationId: hello
+      parameters:
+        - name: name
+          in: query
+          description: The name of the person to whom to say hello
+          required: false
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/HelloWorldResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /restaurants:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: restaurants
+    x-a127-apply: {}
+    get:
+      description: Returns a list of restaurants
+      # used as the method name of the controller
+      operationId: getRestaurants
+      parameters:
+        - name: limit
+          in: query
+          description: How many restaurants to return
+          required: false
+          type: number
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/HelloWorldResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /restaurants/{restID}:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: restaurants
+    x-a127-apply: {}
+    parameters:
+      - name: restID
+        in: path
+        type: number
+    get:
+      description: Returns a restaurant
+      # used as the method name of the controller
+      operationId: getRestaurantsByID
+      parameters:
+        - name: name
+          in: query
+          description: Blah
+          required: false
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/HelloWorldResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /github:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: testGitHub
+    x-a127-apply: {}
+    get:
+      description: Returns a users repositories
+      # used as the method name of the controller
+      operationId: testGitHub
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/HelloWorldResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /gh:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: gitHub
+    x-a127-apply: {}
+    get:
+      description: Returns a users repositories
+      # used as the method name of the controller
+      operationId: gitHub
+      parameters:
+        - name: username
+          in: query
+          description: users name
+          required: true
+          type: string
+        - name: password
+          in: query
+          description: users password
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/HelloWorldResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    post:
+      responses:
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    put:
+      responses:
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    delete:
+      responses:
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+# complex objects have schema definitions
+definitions:
+  HelloWorldResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string

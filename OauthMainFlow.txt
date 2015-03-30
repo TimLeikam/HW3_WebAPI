@@ -1,0 +1,15 @@
+Oauth tokens allow applications to get creditials to
+access your information without actually getting
+your login information.  The user must agree and set
+the permissions that they wish the developer/api to
+have access to.
+
+In addition to this, from my understanding, Oauth 
+tokens will continue to work even if you change your 
+username and password.  If they really don't expire 
+and if they were highjacked in the main flow of an 
+api, then the specific users data would be permanently 
+at risk.
+
+Because of these two reasons, Oauth tokens should not
+be granted in the main flow of an api.
