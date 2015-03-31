@@ -148,27 +148,6 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-    post:
-      responses:
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-    put:
-      responses:
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-    delete:
-      responses:
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
 # complex objects have schema definitions
 definitions:
   HelloWorldResponse:
